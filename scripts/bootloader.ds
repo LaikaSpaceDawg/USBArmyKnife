@@ -1,0 +1,25 @@
+REM Debugging
+REM WIFI_OFF
+REM TFT_OFF
+REM LED_OFF
+
+LED_OFF
+
+REM Automatically mounts SD card when plugged in
+REM Used for maintenance, should not be used in the wild
+
+DEFINE #FILE /lock
+
+IF (FILE_EXISTS() == FALSE) THEN
+	LED 120 100 100 30
+	
+	REM Mount Entire Contents
+	ATTACKMODE STORAGE
+	DISPLAY_TEXT 0 70 Storage Mounted
+	WAIT_FOR_BUTTON_PRESS
+	RESET
+ELSE
+	REM Do nothing
+	LED_R
+	WAIT_FOR_BUTTON_PRESS
+	RESET
